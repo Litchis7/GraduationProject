@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="assets/css/layui.css">
+    <link rel="stylesheet" href="assets/css/view.css"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="icon" href="/favicon.ico">
+    <title>管理后台</title>
+	<script src="js/Variables.js"></script>
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+        <div class="layui-page-header">
+            <div class="pagewrap">
+				<div >
+					<h2 class="title">所有学生信息如下：</h2>
+					
+					<button class="layui-btn layui-btn-blue"  id="btn_reload" style="position: absolute;left: 1550px;top: 30px;">刷新</button>
+					
+				</div>
+
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="form-box">
+                        
+<!--                        <table id="student"></table> -->
+				<table class="table table-bordered" id='tabletest'>
+					<thead>
+						<tr>
+						<th>ID</th>
+						<th>学号</th>
+						<th>名字</th>
+						<th>密码</th>
+						<th>删除</th>
+					</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				 </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="layui.all.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script><!--在easyui上方 -->
+    <script type="text/javascript">
+      var element = layui.element;
+  var table = layui.table;
+  var form = layui.form;
+
+			//查询所有学生
+			$.ajax({
+  			url:'http://'+nip+':8080/Teacher/queryStudent',
+   			type:'GET',
+  			dataType:'json',
+  			success: function(res){
+				result = res.data;
+				for(var i in result){
+					var tr;
+					tr='<tr id='+result[i].sid+'><td>'+result[i].sid+'</td>'+'<td>'+result[i].sno+'</td>'+'<td>'+result[i].susername+'</td>'+'<td>'+result[i].spassword+'</td>'+'<td><button onclick="btn_delete('+result[i].sid+')">删除</button></td></tr>';
+					
+					
+					//tr='<td>'+result[i].sid+'</td>'+'<td>'+result[i].sno+'</td>'+'<td>'+result[i].susername+'</td>'+'<td>'+result[i].spassword+'</td>'+'<td><button onclick="btn_delete(event)">删除</button></td>';
+					$("#tabletest tbody").append(tr);
+				}
+  			}
+   		}); 
+
+
+  
+		//删除学生
+		function btn_delete(a){
+						//alert(a)
+				var _thisTr = $(this);
+				/*//获取sid值
+				var sid = event.path[2].cells[0].innerHTML; */
+				console.log(a)
+				$.ajax({
+				type:'POST',
+				url:'http://'+nip+':8080/Teacher/delete',
+				data:{
+					// 'o1':$("#AC_Output0").val()
+					'sid':a
+				},
+				
+				dataType:"json",
+				success:function(msg){
+					alert(msg.success);
+					$("#"+a).remove();
+				} 
+			});
+  
+  };
+
+
+	$('#btn_reload').click(function(){
+					$.ajax({
+			url:'http://'+nip+':8080/Teacher/queryStudent',
+			type:'GET',
+			dataType:'json',
+			success: function(res){
+				$("#tabletest tbody").empty();
+				result = res.data;
+				for(var i in result){
+					var tr;
+					tr='<tr id='+result[i].sid+'><td>'+result[i].sid+'</td>'+'<td>'+result[i].sno+'</td>'+'<td>'+result[i].susername+'</td>'+'<td>'+result[i].spassword+'</td>'+'<td><button onclick="btn_delete('+result[i].sid+')">删除</button></td></tr>';
+					$("#tabletest").append(tr)
+				}
+			}
+		}); 
+		}) 
+  
+    </script>
+</body>
+</html>

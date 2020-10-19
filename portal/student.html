@@ -1,0 +1,2608 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>学生页面</title>
+		
+		<script type="text/javascript" src="js/Control.js"></script>
+		<script type="text/javascript" src="js/Variables.js"></script>
+		<script type="text/javascript" src="js/websocket.js"></script>
+
+		<link rel="stylesheet" href="css/layui.css">
+		<link rel="stylesheet" type="text/css" href="jquery-easyui-1.7.0/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="jquery-easyui-1.7.0/themes/icon.css">
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script><!--在easyui上方 -->
+		<script type="text/javascript" src="jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/echarts.js"></script>
+		<!-- <script type="text/javascript" src="js/test.js"></script> -->
+		<script src="layui.js"></script>
+		<style type="text/css">
+			
+			/* -------------------------------class---------------------------------- */
+			/* 文本框 */
+			/* 横 */
+			.wenben {
+				width: 200px;
+				height: 24px;
+				border: 1px solid #d3d3d3;
+				position: absolute;
+			}
+			.wenben1 {
+				width: 200px;
+				height: 24px;
+				border: 1px solid #d3d3d3;
+				position: absolute;
+				text-align: center;
+			}
+			.wenben_r_20{
+				width: 20px;
+				height: 24px;
+				border: 1px solid #d3d3d3;
+				position: absolute;
+			}
+			.wenben_r_20_1{
+				width: 20px;
+				height: 24px;
+				border: 1px solid #d3d3d3;
+				position: absolute;
+				text-align: center;
+			}
+			.wenben_r_70{
+				width: 70px;
+				height: 24px;
+				border: 1px solid #d3d3d3;
+				position: absolute;
+			}
+			.wenben_r_70_1{
+				width: 70px;
+				height: 24px;
+				border: 1px solid #d3d3d3;
+				position: absolute;
+				text-align: center;
+			}
+			/* 竖 */
+			.wenben_shu{
+				width: 18px;
+				line-height: 18px;
+				height: 150px;
+				border: 1px solid #d3d3d3;
+				word-break: break-all;/* 允许在单词内换行。 */
+				position: absolute;
+			}
+			.wenben_shu1{
+				width: 12px;
+				line-height: 18px;
+				text-align: center;
+				word-break: break-all;/* 允许在单词内换行。 */
+				position: absolute;
+			}
+			
+			/* 小圆框 */
+			.circle {
+				width:18px;
+				height:18px;
+				background-color:#E4E4E4;
+				border-radius:9px;
+				
+				display: inline-block;
+			}
+			.line{
+				 width:18px;
+				 height:2px;
+				 background:#fff;
+				 box-shadow:0px 1px 1px #666;
+				 top:8px;
+				 position:absolute;
+			}
+			.circle1{
+				width:18px;
+				height:18px;
+				background-color:#E4E4E4;
+				border-radius:9px;
+				margin-left: 5px;
+				display: inline-block;
+			}
+			.circle_1{
+				width: 25px;
+				height: 18px;
+				position: absolute;
+			}
+			.circle_2{
+				width: 50px;
+				height: 18px;
+				position: absolute;
+			}
+			.circle_4{
+				width: 100px;
+				height: 18px;
+				position: absolute;
+			}
+			.circle_8{
+				width: 200px;
+				height: 18px;
+				position: absolute;
+			}
+			/* LED灯 */
+			.led_1 {
+				width:20px;
+				height:20px;
+				position: absolute;
+				
+			}
+			.led_2{
+				position: absolute;
+				width: 50px;
+				height: 20px;
+			}
+			.led_4{
+				position: absolute;
+				width: 100px;
+				height: 30px;
+			}
+			.led_8{
+				position: absolute;
+				width: 200px;
+				height: 20px;
+			}
+			.LED1{
+				width:20px;
+				height:20px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				
+			}
+			.LED2{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED3{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED4{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED5{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED6{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED7{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED8{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED9{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED10{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED11{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED12{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED13{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED14{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED15{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			.LED16{
+				width:20px;
+				height:20px;
+				margin-left: 5px;
+				background-color:#4a5a68;
+				box-shadow:-1px -1px 1px #333;
+				display: inline-block;
+				cursor:pointer;
+			}
+			
+			/* 网络接口端子 */
+			.Profinet{
+				height:30px;
+				width:240px;
+				position:absolute;
+				background-color:#738FAA;
+				border-left:1px solid #333;
+				border-top:1px solid #666;
+				border-right:1px solid #333;
+					
+			}
+			.PROFINET_{
+				font-size:14px;
+				color:#333;
+				line-height:20px;
+				position:absolute;
+				top:-70px;
+				left:-6px;
+				font-family:"微软雅黑";
+			}
+			.PROFINET{
+				font-size:14px;
+				color:#333;
+				text-align:center;
+				width:100%;
+				line-height:20px;
+				position:absolute;
+				top:-46px;
+				left:-6px;
+				font-family:"微软雅黑";
+			}
+			/* 初始化按钮 */
+			.btn_init{
+				width: 60px;
+				height: 20px;
+				position: absolute;
+			}
+			.btn_init1{
+				width: 60px;
+				height: 20px;
+				border: 1px solid black;
+				position: absolute;
+			}
+			/* 网络连接指示灯 */
+			.LED_Net{
+				width: 60px;
+				height: 50px;
+				position: absolute;
+			}
+			/* 输入框 */
+			.shuru{
+				position: absolute;
+				width: 100px;
+				height: 30px;
+			}
+			.shuru1{
+				position: absolute;
+				width: 100px;
+				height: 30px;
+			}
+			/* 颜色选择 */
+			.test-box{
+				margin-bottom: 20px;
+				margin-top: 20px;
+				margin-left: 600px;
+			}	
+			/* ------------------------------------id------------------------------------- */
+			/* 文本框 */
+			/* 横 */
+			#wenben {
+				margin-left: 20px;
+				margin-top: 5px;
+				
+			}
+			#wenben_r_20{
+				width: 20px;
+				height: 24px;
+				border: 1px solid #d3d3d3;
+				margin-top: 35px;
+				margin-left: 20px;
+			}
+			#wenben_r_70{
+				width: 70px;
+				height: 24px;
+				border: 1px solid #d3d3d3;
+				margin-top: 5px;
+				margin-left: 20px;
+			}
+			/* 竖 */
+			#wenben_shu{
+				margin-left: 20px;
+				margin-top: 5px;
+				width: 18px;
+				line-height: 18px;
+				border: 1px solid #d3d3d3;
+				word-break: break-all;/* 允许在单词内换行。 */
+			}
+
+			/* 组件放置区域 */
+/* 			#area {
+				border: 1px solid black;
+				margin: 30px;
+			} */
+			#area{
+				border: 1px solid black;
+				width: 1450px;
+				height: 750px;
+				margin-top: 20px;
+				margin-left: 350px;
+				
+			}
+			/* 小圆框 */
+			#circle_one{
+				width:25px;
+				height:18px;
+				position: absolute;
+				left: 20px;
+			}
+			#circle_two{
+				width:50px;
+				height:18px;
+				position: absolute;
+				left: 20px;
+				margin-top: 25px;
+			}
+			#circle_four{
+				width:100px;
+				height:18px;
+				position: absolute;
+				left: 20px;
+				margin-top: 50px;
+			}
+			#circle_eight{
+				width:200px;
+				height:18px;
+				position: absolute;
+				left: 20px;
+				margin-top: 75px;
+			}
+			/* LED指示灯 */
+			/* 输入口指示灯 */
+			#led_one{
+				position: absolute;
+				left: 20px;
+				width:20px;
+				height:20px;
+			}
+			#led_two{
+				position: absolute;
+				left: 20px;
+				margin-top: 25px;
+				width: 50px;
+				height: 20px;
+			}
+			#led_four{
+				position: absolute;
+				left: 20px;
+				margin-top: 50px;
+				width: 100px;
+				height: 20px;
+			}
+			#led_eight{
+				position: absolute;
+				left: 20px;
+				margin-top: 75px;
+				width: 200px;
+				height: 20px;
+			}
+			
+			/* 输出口指示灯 */
+			#led_one_output{
+				position: absolute;
+				left: 20px;
+				width:20px;
+				height:20px;
+			}
+			#led_two_output{
+				position: absolute;
+				left: 20px;
+				margin-top: 25px;
+				width: 50px;
+				height: 20px;
+			}
+			#led_four_output{
+				position: absolute;
+				left: 20px;
+				margin-top: 50px;
+				width: 100px;
+				height: 20px;
+			}
+			#led_eight_output{
+				position: absolute;
+				left: 20px;
+				margin-top: 75px;
+				width: 200px;
+				height: 20px;
+			}
+			/* 网络信号指示灯 */
+			#led_one_net{
+				position: absolute;
+				left: 20px;
+				width:20px;
+				height:20px;
+			}
+			#led_two_net{
+				position: absolute;
+				left: 20px;
+				margin-top: 25px;
+				width: 50px;
+				height: 20px;
+			}
+					
+			/* 网络接口端子 */
+			#Profinet{
+				height:30px;
+				width:240px;
+				position:absolute;
+				margin-top: 60px;
+				background-color:#738FAA;
+				border-left:1px solid #333;
+				border-top:1px solid #666;
+				border-right:1px solid #333;
+				left:20px;
+			}
+			#XieMian{
+				left: 20px;
+				height:12px;
+				width:240px;
+				background: -webkit-linear-gradient(1deg,#738FAA,#59646e); /* Safari 5.1 - 6.0 */
+			    background: -o-linear-gradient(1deg,#738FAA,#59646e); /* Opera 11.1 - 12.0 */
+			    background: -moz-linear-gradient(1deg,#738FAA,#59646e); /* Firefox 3.6 - 15 */
+			    background: linear-gradient(1deg,#738FAA,#59646e); /* 标准的语法 */
+			
+			}
+			#Net_{
+				height:2px;
+				width:200px;
+				left:40px;
+				background-color:#CACACA;
+				position:absolute;
+			}
+			#QueKou1{
+				height:2px;
+				width:30px;
+				left:75px;
+				background-color:#565656;
+				position:absolute;
+			}
+			#QueKou2{
+				height:2px;
+				width:30px;
+				right:35px;
+				background-color:#565656;
+				position:absolute;
+			}
+			
+			/* 初始化按钮 */
+			#btn_init{
+				position: absolute;
+				left: 20px;
+				
+			}
+			/* 网络连接指示灯 */
+			#NetOff{
+				left:20px;
+				
+				position:absolute;
+				width: 60px;
+			}
+			#NetOff1{
+				position:absolute;
+				width: 60px;
+				z-index: -999; /* 解决拖动bug */ 
+			}
+			#NetOn1{
+				display:none;
+				position:absolute;
+				width: 60px;
+				z-index: -999;	 
+			}
+			#NetOn2{
+				display:none;
+				position:absolute;
+				width: 60px;
+				z-index: -999;
+			}
+			/* 输入框 */
+			#shuru{
+				margin-left: 20px;
+				margin-top:20px;
+				width: 100px;
+				height: 30px;
+			}
+			/* 备注字体大小 */
+			#ps{
+				font-size: 12px;
+			}
+		</style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">
+		<img src="img/CqustLogo.png" />
+		</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+			<li class="layui-nav-item"><a onclick="a()">查看数据</a></li>
+      <li class="layui-nav-item"><a id="btn_save">保存组件</a></li>
+      <li class="layui-nav-item"><a id="btn_query">加载组件</a></li>
+      <li class="layui-nav-item"><a onclick="btn_net()">联网</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">曲线图</a>
+        <dl class="layui-nav-child">
+          <dd><a  class="btn_AI0">AI0</a></dd><!-- bug :影响左边的组件-->
+          <dd><a  class="btn_AI1">AI1</a></dd>
+          <dd><a  class="btn_AQ0">AQ0</a></dd>
+		  <dd><a  class="btn_AQ1">AQ1</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">	
+	<li class="layui-nav-item"><img src="img/litchis77.jpg" class="layui-nav-img" ></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;"  id="uname">
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">修改密码</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="login.html">注销</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+     <!-- 左侧导航栏 -->
+     	<div class="easyui-accordion" style="width:300px;height:500px;position: absolute;">
+     	<!-- 静态文本框 -->
+         <div title="静态文本框" style="padding:10px;">
+     		<!-- 横 -->
+          <div id="wenben"  class="wenben">200</div>
+		  <div id="wenben_r_20">20</div>
+		  <div id="wenben_r_70">70</div>
+     		<!-- 竖 -->
+     	<div id="wenben_shu">竖文本框</div>
+
+         </div>
+     	<!-- 输入框 -->
+     	<div title="输入框" style="padding:10px;">
+     		<input type="text" id="shuru"/>
+     	</div>
+     	<!-- 小圆框 -->
+         <div title="小圆框"   style="padding:10px;">
+     		
+					<!-- 1个小圆框 -->
+			    <div id="circle_one" >
+						<div class="circle"><div class="line"></div></div>
+					</div>
+     		<!-- 2个小圆框 -->
+     		<div id="circle_two">
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     		</div>
+     		<!-- 4个小圆框 -->
+     		<div id="circle_four">
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     		</div>
+     		<!-- 8个小圆框 -->
+     		<div id="circle_eight">
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     			<div class="circle"><div class="line"></div></div>
+     		</div>
+         </div>
+     	
+     	<!-- ---------------------------------------LED灯 ----------------------------------------->
+     		<!-- 输入口指示灯 -->
+         <div title="输入口指示灯" style="padding:10px;">
+               			<!-- 1个LED灯 -->
+                <div id="led_one"  >
+               	 <div class="LED1"></div>
+                </div>
+               <!-- 2个LED灯 -->
+               	<div id="led_two">
+               		<div class="LED1"></div>
+               		<div class="LED1"></div>
+               	</div>
+               	<!-- 4个LED灯 -->
+               	<div id="led_four">
+               		<div class="LED1"  ></div>
+               		<div class="LED1"  ></div>
+               		<div class="LED1"  ></div>
+               		<div class="LED1"  ></div>
+               	</div>
+               	<!-- 8个LED灯 -->
+               	<div id="led_eight">
+               		<div class="LED1"  ></div>
+               		<div class="LED1"  ></div>
+               		<div class="LED1"  ></div>
+               		<div class="LED1"  ></div>
+               		<div class="LED1"  ></div>
+               		<div class="LED1"  ></div>
+               		<div class="LED1"  ></div>
+               		<div class="LED1"  ></div>
+               	</div>
+         </div>
+     			<!-- 输出口指示灯 -->
+     	<div title="输出口指示灯" style="padding:10px;">
+     	      			<!-- 1个LED灯 -->
+     	       <div id="led_one_output"  >
+     	      	 <div class="LED1"></div>
+     	       </div>
+     	      <!-- 2个LED灯 -->
+     	      	<div id="led_two_output">
+     	      		<div class="LED1"></div>
+     	      		<div class="LED1"></div>
+     	      	</div>
+     	      	<!-- 4个LED灯 -->
+     	      	<div id="led_four_output">
+     	      		<div class="LED1"  ></div>
+     	      		<div class="LED1"  ></div>
+     	      		<div class="LED1"  ></div>
+     	      		<div class="LED1"  ></div>
+     	      	</div>
+     	      	<!-- 8个LED灯 -->
+     	      	<div id="led_eight_output">
+     	      		<div class="LED1"  ></div>
+     	      		<div class="LED1"  ></div>
+     	      		<div class="LED1"  ></div>
+     	      		<div class="LED1"  ></div>
+     	      		<div class="LED1"  ></div>
+     	      		<div class="LED1"  ></div>
+     	      		<div class="LED1"  ></div>
+     	      		<div class="LED1"  ></div>
+     	      	</div>
+     	</div>		
+     			
+     			<!-- 网络信号指示灯 -->
+     	<div title="网络信号指示灯" style="padding:10px;">
+     	      			<!-- 1个LED灯 -->
+     	       <div id="led_one_net"  >
+     	      	 <div class="LED1"></div>
+     	       </div>
+     	      <!-- 2个LED灯 -->
+     	      	<div id="led_two_net">
+     	      		<div class="LED1"></div>
+     	      		<div class="LED1"></div>
+     	      	</div>
+     	</div>
+     	
+     	
+     	<!-- 网络接口端子 -->
+     	<div title="网络接口端子" style="padding:10px;">
+     	     <div id="Profinet">
+     	     		<div id="XieMian"></div>
+     	     	    <div id="Net_"><span class="PROFINET">PROFINET(LAN)</span></div>
+     	     	    <div id="QueKou1"><span class="PROFINET_">X1P1R</span></div>
+     	     	    <div id="QueKou2"><span class="PROFINET_">X1P2R</span></div>
+     	     </div>
+     	</div>
+     	<!-- 初始化按钮 -->
+     	<div title="按钮" style="padding:10px;">
+     	     <button id="btn_init">按钮</button>
+     	</div>
+     	<!-- 网络指示灯 -->
+     	<div title="网络指示灯" style="padding:10px;">
+     	     <img src="img/Net_0001.png" id="NetOff"/>
+     	</div>
+     
+     </div>
+    </div>
+  </div>
+
+
+		<!-- 删除键 -->
+		<div id="rdiv" style="position:absolute; display:none;margin-left: 1830px;margin-top:400px;">
+			<!-- <INPUT TYPE="button" value="删除" onclick="remove1()"> -->
+			<button class="layui-btn layui-btn-danger layui-btn-radius" onclick="remove1()">删除</button>
+		</div>
+		<!-- ------------------------------------------------------弹窗输入框----------------------------------------------------- -->
+		<!-- ----------------------------------------------LED指示灯灯 -------------------------------->
+		<!----------------- 输入口指示灯 ------->
+		<!-- 1个 -->
+		<div id="win" class="easyui-window" title="输入口指示灯" style="width:500px;height:150px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：三个特殊格式为RUN_STOP、ERROR、MAINT，其余为I0_0~I0_7，I1_0~I1_5</label>
+				<br />
+				<div>指示灯ID：</div>
+				<input id="number" style="height: 30px;"/>
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win" style="display: block">
+		    <a id="btn_confirm" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		</div>
+		</div>
+		
+		<!-- 2个 -->
+		<div id="win2" class="easyui-window" title="输入口指示灯" style="width:500px;height:220px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：三个特殊格式为RUN_STOP、MAINT、ERROR，其余为I0_0~I0_7，I1_0~I1_5</label>
+				<div>第1个指示灯ID:</div>
+				<input id="number2" style="height: 30px;"  />
+				<div>第2个指示灯ID:</div>
+				<input id="number3" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win2" style="display: block">
+		    <a id="btn_confirm2" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+		<!-- 4个 -->
+		<div id="win3" class="easyui-window" title="输入口指示灯" style="width:500px;height:320px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：三个特殊格式为RUN_STOP、MAINT、ERROR，其余为I0_0~I0_7，I1_0~I1_5</label>
+				<div>第1个指示灯ID:</div>
+				<input id="number4" style="height: 30px;"  />
+				<div>第2个指示灯ID:</div>
+				<input id="number5" style="height: 30px;"  />
+				<div>第3个指示灯ID:</div>
+				<input id="number6" style="height: 30px;"  />
+				<div>第4个指示灯ID:</div>
+				<input id="number7" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win3" style="display: block">
+		    <a id="btn_confirm3" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+		<!-- 8个 -->
+		<div id="win4" class="easyui-window" title="输入口指示灯" style="width:500px;height:520px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：三个特殊格式为RUN_STOP、MAINT、ERROR，其余为I0_0~I0_7，I1_0~I1_5</label>
+				<div>第1个指示灯ID:</div>
+				<input id="number8" style="height: 30px;"  />
+				<div>第2个指示灯ID:</div>
+				<input id="number9" style="height: 30px;"  />
+				<div>第3个指示灯ID:</div>
+				<input id="number10" style="height: 30px;"  />
+				<div>第4个指示灯ID:</div>
+				<input id="number11" style="height: 30px;"  />
+				<div>第5个指示灯ID:</div>
+				<input id="number12" style="height: 30px;"  />
+				<div>第6个指示灯ID:</div>
+				<input id="number13" style="height: 30px;"  />
+				<div>第7个指示灯ID:</div>
+				<input id="number14" style="height: 30px;"  />
+				<div>第8个指示灯ID:</div>
+				<input id="number15" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win4" style="display: block">
+		    <a id="btn_confirm4" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+		<!------------------- 输出口指示灯 ------------------->
+		<!-- 1个 -->
+		<div id="win11" class="easyui-window" title="输出口指示灯" style="width:500px;height:150px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：id格式为Q0_0~Q0_7、Q1_0~Q1_1，点击事件名称格式为Control_DQ(0~9)</label>
+				
+				<div>第1个指示灯:</div>
+				id:<input id="number16" style="height: 30px;"  /> 点击事件名称:<input id="number17" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win11" style="display: block">
+		    <a id="btn_confirm11" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+		<!-- 2个 -->
+		<div id="win12" class="easyui-window" title="输出口指示灯" style="width:500px;height:220px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：id格式为Q0_0~Q0_7、Q1_0~Q1_1，点击事件名称格式为Control_DQ(0~9)</label>
+				<div>第1个指示灯</div>
+				id:<input id="number18" style="height: 30px;"  /> 点击事件名称:<input id="number19" style="height: 30px;"  />
+				<div>第2个指示灯</div>
+				id:<input id="number20" style="height: 30px;"  /> 点击事件名称:<input id="number21" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win12" style="display: block">
+		    <a id="btn_confirm12" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+		<!-- 4个 -->
+		<div id="win13" class="easyui-window" title="输出口指示灯" style="width:500px;height:320px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：id格式为Q0_0~Q0_7、Q1_0~Q1_1，点击事件名称格式为Control_DQ(0~9)</label>
+				<div>第1个指示灯</div>
+				id:<input id="number22" style="height: 30px;"  /> 点击事件名称:<input id="number23" style="height: 30px;"  />
+				<div>第2个指示灯</div>
+				id:<input id="number24" style="height: 30px;"  /> 点击事件名称:<input id="number25" style="height: 30px;"  />
+				<div>第3个指示灯</div>
+				id:<input id="number26" style="height: 30px;"  /> 点击事件名称:<input id="number27" style="height: 30px;"  />
+				<div>第4个指示灯</div>
+				id:<input id="number28" style="height: 30px;"  /> 点击事件名称:<input id="number29" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win13" style="display: block">
+		    <a id="btn_confirm13" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+		<!-- 8个 -->
+		<div id="win14" class="easyui-window" title="输出口指示灯" style="width:500px;height:520px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：id格式为Q0_0~Q0_7、Q1_0~Q1_1，点击事件名称格式为Control_DQ(0~9)</label>
+				<div>第1个指示灯</div>
+				id:<input id="number30" style="height: 30px;"  /> 点击事件名称:<input id="number31" style="height: 30px;"  />
+				<div>第2个指示灯</div>
+				id:<input id="number32" style="height: 30px;"  /> 点击事件名称:<input id="number33" style="height: 30px;"  />
+				<div>第3个指示灯</div>
+				id:<input id="number34" style="height: 30px;"  /> 点击事件名称:<input id="number35" style="height: 30px;"  />
+				<div>第4个指示灯</div>
+				id:<input id="number36" style="height: 30px;"  /> 点击事件名称:<input id="number37" style="height: 30px;"  />
+				<div>第5个指示灯</div>
+				id:<input id="number38" style="height: 30px;"  /> 点击事件名称:<input id="number39" style="height: 30px;"  />
+				<div>第6个指示灯</div>
+				id:<input id="number40" style="height: 30px;"  /> 点击事件名称:<input id="number41" style="height: 30px;"  />
+				<div>第7个指示灯</div>
+				id:<input id="number42" style="height: 30px;"  /> 点击事件名称:<input id="number43" style="height: 30px;"  />
+				<div>第8个指示灯</div>
+				id:<input id="number44" style="height: 30px;"  /> 点击事件名称:<input id="number45" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win14" style="display: block">
+		    <a id="btn_confirm14" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+		<!-- --------------网络连接指示灯 ------------->
+		<!-- 1个 -->
+		<div id="win9" class="easyui-window" title="网络连接指示灯" style="width:500px;height:150px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：一个为NETLINK，一个为Message</label>
+				<br />
+				<div>指示灯ID：</div>
+				<input id="number46" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win9" style="display: block">
+		    <a id="btn_confirm9" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+		<!-- 2个 -->
+		<div id="win10" class="easyui-window" title="网络连接指示灯" style="width:500px;height:220px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：一个为NETLINK，一个为Message</label>
+				<div>第1个指示灯ID:</div>
+				<input id="number47" style="height: 30px;"  />
+				<div>第2个指示灯ID:</div>
+				<input id="number48" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win10" style="display: block">
+		    <a id="btn_confirm10" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+
+		<!-- --------------------------------------------文本框--------------------------- -->
+		<!-- ---------------------------横 ----------------------------->
+		<!-- ----------------------200px------------------- -->
+		<div id="win5" class="easyui-window" title="200px" style="width:600px;height:300px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label style="font-size: 40px;">请输入内容：</label>
+				<br />
+				<input id="number49" style="height: 60px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win5" style="display: block">
+		    <a id="btn_confirm5" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px;height: 60px;">确认</a>
+		    
+		</div>
+		</div>
+		<!-------------------------- 20px --------------------->
+				<div id="win15" class="easyui-window" title="20px" style="width:300px;height:120px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label>请输入内容：</label>
+				<br />
+				<input id="number54" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win15" style="display: block">
+		    <a id="btn_confirm15" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		<!-------------------------- 70px --------------------->
+		<div id="win16" class="easyui-window" title="70px" style="width:300px;height:120px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label>请输入内容：</label>
+				<br />
+				<input id="number55" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win16" style="display: block">
+		    <a id="btn_confirm16" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+		<!-- 竖 -->
+		<div id="win8" class="easyui-window" title="请输入组件内容" style="width:300px;height:120px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label>请输入内容：</label>
+				<br />
+				<input id="number50" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win8" style="display: block">
+		    <a id="btn_confirm8" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+		<!-- 按钮 -->
+		<div id="win6" class="easyui-window" title="请输入组件内容" style="width:550px;height:200px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：电流输出按钮格式为AQ0~1()，电压采集按钮格式为AI0~1(),设置按钮格式为SetNum()</label>
+				<div>请输入点击事件名称:</div>
+				<input id="number51" style="height: 30px;"  />
+				<div>请输入按钮名字:</div>
+				<input id="number52" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win6" style="display: block">
+		    <a id="btn_confirm6" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+		
+					<!-- 输入框弹窗输入 -->
+		<div id="win7" class="easyui-window" title="请输入组件ID" style="width:700px;height:140px"
+		    data-options="iconCls:'icon-save',modal:true" closed="true">
+		    
+			<div>
+				<label id="ps">备注：电压格式为AC_Input0~1，电流为AC_Output0~1，通讯节点编号为UDP_Num，PLC编号为PLC_Num(0001)</label>
+				<div >请输入ID：</div>
+				<input id="number53" style="height: 30px;"  />
+			</div>
+		
+		<!-- 直接写确认取消的事件不需要在js中绑定 -->
+		<!-- javascript:void(0),让超链接去执行一个js函数，而不是去跳转到一个地址 -->
+		<div id="btn_win7" style="display: block">
+		    <a id="btn_confirm7" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" style="width: 90px">确认</a>
+		    
+		</div>
+		</div>
+					<!------------------------------------------ 曲线图 -------------------------------------------------->
+		<!-- AI0 -->
+			<div id="win_AI0" class="easyui-window" title="实时AI0电压采集曲线图" style="width:700px;height:500px"
+			data-options="iconCls:'icon-save',modal:true" closed="true">  
+			<div id="AI0" style="width: 650px;height:400px;"></div>
+			</div>	
+		<!-- AI1 -->
+			<div id="win_AI1" class="easyui-window" title="实时AQ1电压采集曲线图" style="width:700px;height:500px"
+			data-options="iconCls:'icon-save',modal:true" closed="true">  
+			<div id="AI1" style="width: 650px;height:400px;"></div>
+			</div>
+		<!-- AQ0 -->
+			<div id="win_AQ0" class="easyui-window" title="AQ0电流采集曲线图" style="width:700px;height:500px"
+			data-options="iconCls:'icon-save',modal:true" closed="true">   
+			<div id="AQ0" style="width:650px;height:400px;"></div>
+			</div>
+		<!-- AQ1 -->
+			<div id="win_AQ1" class="easyui-window" title="AQ1电流采集曲线图" style="width:700px;height:500px"
+			data-options="iconCls:'icon-save',modal:true" closed="true">   
+			<div id="AQ1" style="width: 650px;height:400px;"></div>
+			</div>
+		
+		
+
+		<!-- -----------拖拽区域 -------------->
+	<div id="area"></div>
+			<!-- 颜色选择器 -->
+	<div class="layui-container">
+	<div class="test-box">
+	  <div class="layui-inline">
+	    <input class="layui-input" id="LAY-test1" placeholder="可选择颜色" style="border: 1px solid #1B6D85;">
+	  </div>
+	  <div id="test1" style="border: 1px solid yellow;"></div>
+	</div>
+
+     <!-- 底部固定区域 -->
+  <div class="layui-footer" align="center">
+   PLC S7-1200组件拖拽虚拟实验
+  </div>
+</div>
+
+
+<script type="text/javascript">
+		//JavaScript代码区域
+		layui.use('element', function(){
+			var element = layui.element;
+		});
+
+		// 获取用户名
+		var info = window.localStorage.info;
+		var data7 = JSON.parse(info)
+		//console.log(info.sno)
+		 var dd = document.getElementById("uname");
+		 dd.innerHTML = data7.susername ;
+
+
+						// --------------------------------------------全局组件拖拽绑定-------------------------------------
+		/* 鼠标按下拖动开始 */
+		var mouseX, mouseY;
+		var objX, objY;
+		var isDowm = false; //是否按下鼠标
+		function mouseDown(obj, e) {
+			obj.style.cursor = "move";
+			objX = obj.style.left;
+			objY = obj.style.top;
+			mouseX = e.clientX;
+			mouseY = e.clientY;
+			isDowm = true;
+		}
+
+		function mouseMove(obj,e) { 
+			var x = e.clientX;
+			var y = e.clientY;
+			if (isDowm) {
+				obj.style.left = parseInt(objX) + parseInt(x) - parseInt(mouseX) + "px";
+				obj.style.top = parseInt(objY) + parseInt(y) - parseInt(mouseY) + "px";
+			}
+		}
+
+		function mouseUp(obj,e) {
+			if (isDowm) {
+				var x = e.clientX;
+				var y = e.clientY; 
+				obj.style.left = (parseInt(x) - parseInt(mouseX) + parseInt(objX)) + "px";
+				obj.style.top = (parseInt(y) - parseInt(mouseY) + parseInt(objY)) + "px";
+				mouseX = x;
+				rewmouseY = y;
+				obj.style.cursor = "default";
+				isDowm = false;
+			}
+		}
+		
+		/* 每一个div 绑定鼠标事件 onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'*/
+			/* 鼠标按下拖动结束 */
+		
+		
+		
+		
+		
+		// --------------------------------------------------------------------------数据库操作-------------------------------------------------
+		// 保存数据
+		$('#btn_save').click(function(){
+			
+			var val=document.getElementById("area").value;
+					$.ajax({
+				type:'POST',
+				url:'http://'+nip+':8080/PLC/insert',
+				data:{
+					// 'o1':$("#AC_Output0").val()
+					'content':$("#area").html().valueOf(),
+					'sid':data7.sid
+					
+				},
+				
+				dataType:"json",
+				success:function(msg){
+					
+					alert(msg.success);
+				}
+			});
+		
+		});
+		
+		// 加载数据(bug:重新加载不能拖拽)(已解决)
+		$('#btn_query').click(function(){
+			$.ajax({
+					data:{
+						'sid':data7.sid
+					},
+					url:'http://'+nip+':8080/PLC/query',
+					type:'GET',
+					dataType:'json',
+					success: function(res){
+						var dd = $('#area');
+						
+						$.each(res.content, function(index,  item){
+							// append()为追加,html()为替换
+							//dd.append(item);
+							dd.html(item);
+						})
+					}
+				});
+			
+			
+		});
+		
+		
+		
+					// ----------------------------------------组件拖拽设计----------------------------------
+		//-----------------------------------------------文本框-------------------------------------------
+			// --------------------------------横--------------------------------------
+			// -----------------200px----------------
+		$(function() {
+			$('#wenben').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+					var mathR = generateMixed(5);//生成五位随机数
+					$("#area").append("<div id='d" + mathR + "' class='wenben' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeSth_row('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='wenben1'></div></div>");
+					// ondblclick 属性在鼠标双击元素时触发。
+					  
+				}
+			});
+		});
+		
+		//-------------------------20px--------------------------
+		$(function() {
+			$('#wenben_r_20').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+					var mathR = generateMixed(5);//生成五位随机数
+					$("#area").append("<div id='d" + mathR + "' class='wenben_r_20' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeSth_row_20('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='wenben_r_20_1'></div></div>");
+					// ondblclick 属性在鼠标双击元素时触发。
+					  
+				}
+			});
+		});
+		//-------------------------70px--------------------------
+		$(function() {
+			$('#wenben_r_70').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+					var mathR = generateMixed(5);//生成五位随机数
+					$("#area").append("<div id='d" + mathR + "' class='wenben_r_70' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeSth_row_70('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='wenben_r_70_1'></div></div>");
+					// ondblclick 属性在鼠标双击元素时触发。
+					  
+				}
+			});
+		});
+		
+			// 竖
+			$(function() {
+				$('#wenben_shu').draggable({
+					proxy: 'clone',
+					revert: true,
+					onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						$("#area").append("<div id='d" + mathR + "' class='wenben_shu' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeSth_col('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='wenben_shu1'></div></div>");
+						// ondblclick 属性在鼠标双击元素时触发。
+						  
+					}
+				});
+			});
+		// ------------------------------------------------------------小圆框------------------------------------------------
+						// 1个小圆框
+		$(function() {
+			$('#circle_one').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+					var mathR = generateMixed(5);//生成五位随机数
+					$("#area").append("<div id='d" + mathR + "' class='circle_1' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='circle1'><div class='line'></div></div></div>");
+					//"\"为转义字符，表示其只不过是个字符，而非字符串定界符。否则这么多双引号，你让人家怎么能知道哪些是字符串分割符，哪些是字符串的内容？
+					  
+				}
+			});
+		});
+					// <div class='circle1'><div class='line'></div></div>
+					// 2个小圆框
+		$(function() {
+			$('#circle_two').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+					var mathR = generateMixed(5);//生成五位随机数
+					$("#area").append("<div id='d" + mathR + "' class='circle_2' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div></div>");
+					//"\"为转义字符，表示其只不过是个字符，而非字符串定界符。否则这么多双引号，你让人家怎么能知道哪些是字符串分割符，哪些是字符串的内容？
+					  
+				}
+			});
+		});			
+					//4个小圆框
+		$(function() {
+			$('#circle_four').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+					var mathR = generateMixed(5);//生成五位随机数
+					$("#area").append("<div id='d" + mathR + "' class='circle_4' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div></div>");
+					//"\"为转义字符，表示其只不过是个字符，而非字符串定界符。否则这么多双引号，你让人家怎么能知道哪些是字符串分割符，哪些是字符串的内容？
+					  
+				}
+			});
+		});			
+					//8个小圆框
+		$(function() {
+				$('#circle_eight').draggable({
+					proxy: 'clone',
+					revert: true,
+					onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						$("#area").append("<div id='d" + mathR + "' class='circle_8' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div><div class='circle1'><div class='line'></div></div></div>");
+						//"\"为转义字符，表示其只不过是个字符，而非字符串定界符。否则这么多双引号，你让人家怎么能知道哪些是字符串分割符，哪些是字符串的内容？
+						  
+					}
+				});
+			});
+		// ---------------------------------------------------------------LED指示灯-----------------------------------------------
+				// ----------------------------------------输入口指示灯----------------------------
+		// 一个LED灯
+			$(function() {
+			$('#led_one').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						
+						//接受
+						//writeID(mathR);
+						//var Nid = localStorage.getItem("rec");
+						$("#area").append("<div id='d" + mathR + "' class='led_1' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\"  ondblclick=\"writeID('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='LED2'></div></div>");
+						//3$("#area").attr("id",Nid);
+
+						
+					}
+			});
+		});
+		
+		// 2个LED灯
+			$(function() {
+			$('#led_two').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						
+						//writeID2(mathR);
+						
+						$("#area").append("<div id='d" + mathR + "' class='led_2' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeID2('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='LED3' ></div><div class='LED4' ></div></div>");
+
+					}
+			});
+		});
+
+		// 4个LED灯
+			$(function() {
+			$('#led_four').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						//writeID3(mathR);
+						$("#area").append("<div id='d" + mathR + "' class='led_4' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeID3('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='LED5'></div><div class='LED6'></div><div class='LED7'></div><div class='LED8' ></div></div>");
+					
+					}
+			});
+		});
+		//8个LED灯
+		$(function() {
+			$('#led_eight').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						//writeID4(mathR);
+						$("#area").append("<div id='d" + mathR + "' class='led_8' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeID4('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='LED9'></div><div class='LED10'></div><div class='LED11'></div><div class='LED12'></div><div class='LED13'></div><div class='LED14'></div><div class='LED15'></div><div class='LED16'></div></div>");
+						
+						
+					}
+			});
+		});
+		// -----------------------输出口指示灯-----------------------
+				// 一个LED灯
+			$(function() {
+			$('#led_one_output').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						
+						//接受
+						//writeID(mathR);
+						//var Nid = localStorage.getItem("rec");
+						$("#area").append("<div id='d" + mathR + "' class='led_1' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\"  ondblclick=\"writeID_output('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='LED2'></div></div>");
+						//3$("#area").attr("id",Nid);
+		
+						
+					}
+			});
+		});
+		
+		// 2个LED灯
+			$(function() {
+			$('#led_two_output').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						
+						//writeID2(mathR);
+						
+						$("#area").append("<div id='d" + mathR + "' class='led_2' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeID2_output('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='LED3' ></div><div class='LED4' ></div></div>");
+		
+					}
+			});
+		});
+		
+		// 4个LED灯
+			$(function() {
+			$('#led_four_output').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						//writeID3(mathR);
+						$("#area").append("<div id='d" + mathR + "' class='led_4' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeID3_output('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='LED5'></div><div class='LED6'></div><div class='LED7'></div><div class='LED8' ></div></div>");
+					
+					}
+			});
+		});
+		//8个LED灯
+		$(function() {
+			$('#led_eight_output').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						//writeID4(mathR);
+						$("#area").append("<div id='d" + mathR + "' class='led_8' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeID4_output('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='LED9'></div><div class='LED10'></div><div class='LED11'></div><div class='LED12'></div><div class='LED13'></div><div class='LED14'></div><div class='LED15'></div><div class='LED16'></div></div>");
+						
+						
+					}
+			});
+		});
+		// -----------------------网络连接指示灯---------------------
+		// 一个LED灯
+		$(function() {
+		$('#led_one_net').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						
+						//接受
+						//writeID(mathR);
+						//var Nid = localStorage.getItem("rec");
+						$("#area").append("<div id='d" + mathR + "' class='led_1' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\"  ondblclick=\"writeID_net('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='LED2'></div></div>");
+						//3$("#area").attr("id",Nid);
+		
+						
+					}
+			});
+		});
+		
+		// 2个LED灯
+			$(function() {
+			$('#led_two_net').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+						var mathR = generateMixed(5);//生成五位随机数
+						
+						//writeID2(mathR);
+						
+						$("#area").append("<div id='d" + mathR + "' class='led_2' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" ondblclick=\"writeID2_net('" + mathR + "')\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'><div class='LED3' ></div><div class='LED4' ></div></div>");
+		
+					}
+			});
+		});
+
+		// -------------------------------------------网络接口端子---------------------------------------
+		$(function() {
+			$('#Profinet').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+					var mathR = generateMixed(5);//生成五位随机数
+					$("#area").append("<div id='d" + mathR + "' class='Profinet' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)' ><div id='XieMian'></div><div id='Net_'><span class='PROFINET'>PROFINET(LAN)</span></div><div id='QueKou1'><span class='PROFINET_'>X1P1R</span></div><div id='QueKou2'><span class='PROFINET_'>X1P2R</span></div></div>");
+					  
+				}
+			});
+		});
+
+		//---------------------------------------------------------- 按钮(bug:id点击事件失效，只能onclick触发(已解决))---------------------------------------------
+		$(function() {
+			$('#btn_init').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+					var mathR = generateMixed(5);//生成五位随机数
+					$("#area").append("<div id='d" + mathR + "' class='btn_init' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\" onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)' ondblclick=\"writeSth_btn('" + mathR + "')\"><button class='btn_init1'></button></div>");
+					  
+				}
+			});
+		});
+		// ----------------------------------------网络连接指示灯(拖动bug)(已解决)-------------------------------------
+		$(function() {
+			$('#NetOff').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+					var mathR = generateMixed(5);//生成五位随机数
+					$("#area").append("<div id='d" + mathR + "' class='LED_Net' oncontextmenu= 'rclick(this)' onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\"><img src='img/Net_0001.png' id='NetOff1'/> <img src='img/Net_Cartoon001.png' id='NetOn1'/><img src='img/Net_Cartoon002.png' id='NetOn2'/></div>");
+					 
+				}
+			});
+		});
+		// ------------------------------------------------输入框------------------------------------------------
+		$(function() {
+			$('#shuru').draggable({
+				proxy: 'clone',
+				revert: true,
+				onStopDrag: function(event) {
+					var mathR = generateMixed(5);//生成五位随机数
+					$("#area").append("<div id='d" + mathR + "' class='shuru' oncontextmenu= 'rclick(this)'  style=\"left:" + (event.clientX - 40) + "px;top:" + (event.clientY - 40) + "px;\"  onmousedown='mouseDown(this,event)' onmousemove='mouseMove(this,event)' onmouseup='mouseUp(this,event)' ondblclick=\"writeSth_input('" + mathR + "')\"><input type='text' class='shuru1' autocomplete='off'/></div>");
+					// ondblclick 属性在鼠标双击元素时触发。
+					  
+				}
+			});
+		});
+		
+		// -----------------------------------------------双击弹窗输入传值-------------------------------------------------
+			// ----------------------------------------输入口指示灯------------------------------
+			//一个LED灯
+			
+			function writeID(mathR){
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.LED2" ).attr("id");
+				if(inputid1 == undefined){
+					$("#number").val("");
+					$('#win').window('open');
+					$('#btn_confirm').on('click',function(){
+						 var Nid = $("#number").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED2" ).attr("id",Nid);
+						 $('#win').dialog('close');
+						 $('#btn_confirm').off("click");
+					});
+				}else{
+					$("#number").val(inputid1);
+					$('#win').window('open');
+					$('#btn_confirm').on('click',function(){
+						 var Nid = $("#number").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED2" ).attr("id",Nid);
+						 $('#win').dialog('close');
+						 $('#btn_confirm').off("click");
+					});
+				}
+
+			}
+			
+			//两个LED灯
+			function writeID2(mathR){
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.LED3" ).attr("id");
+				var inputid2 = $("#d"+mathR+">.LED4" ).attr("id");
+				if(inputid1 == undefined && inputid2 == undefined){
+					$("#number2").val("");
+					$("#number3").val("");
+					$('#win2').window('open');
+					$('#btn_confirm2').on('click',function(){
+						 var Nid = $("#number2").val();
+						 var Nid2 = $("#number3").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED3" ).attr("id",Nid);
+						 $("#"+did+">.LED4" ).attr("id",Nid2);
+						 $('#win2').dialog('close');
+						 $('#btn_confirm2').off("click");
+					});
+				}else{
+					$("#number2").val(inputid1);
+					$("#number3").val(inputid2);
+					$('#win2').window('open');
+					$('#btn_confirm2').on('click',function(){
+						 var Nid = $("#number2").val();
+						 var Nid2 = $("#number3").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED3" ).attr("id",Nid);
+						 $("#"+did+">.LED4" ).attr("id",Nid2);
+						 $('#win2').dialog('close');
+						 $('#btn_confirm2').off("click");
+					});
+				}
+			}
+			
+			//4个LED灯
+			function writeID3(mathR){
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.LED5" ).attr("id"); 
+				var inputid2 = $("#d"+mathR+">.LED6" ).attr("id");
+				var inputid3 = $("#d"+mathR+">.LED7" ).attr("id");
+				var inputid4 = $("#d"+mathR+">.LED8" ).attr("id");
+				if(inputid1 == undefined && inputid2 == undefined && inputid3 == undefined && inputid4 == undefined){
+					$("#number4").val("");
+					$("#number5").val("");
+					$("#number6").val("");
+					$("#number7").val("");
+					$('#win3').window('open');
+					$('#btn_confirm3').on('click',function(){
+						 var Nid = $("#number4").val();
+						 var Nid2 = $("#number5").val();
+						 var Nid3= $("#number6").val();
+						 var Nid4 = $("#number7").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED5" ).attr("id",Nid);
+						 $("#"+did+">.LED6" ).attr("id",Nid2);
+						 $("#"+did+">.LED7" ).attr("id",Nid3);
+						 $("#"+did+">.LED8" ).attr("id",Nid4);
+						 $('#win3').dialog('close');
+						 $('#btn_confirm3').off("click");
+					});
+				}else{
+					$("#number4").val(inputid1);
+					$("#number5").val(inputid2);
+					$("#number6").val(inputid3);
+					$("#number7").val(inputid4);
+					$('#win3').window('open');
+					$('#btn_confirm3').on('click',function(){
+						 var Nid = $("#number4").val();
+						 var Nid2 = $("#number5").val();
+						 var Nid3= $("#number6").val();
+						 var Nid4 = $("#number7").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED5" ).attr("id",Nid);
+						 $("#"+did+">.LED6" ).attr("id",Nid2);
+						 $("#"+did+">.LED7" ).attr("id",Nid3);
+						 $("#"+did+">.LED8" ).attr("id",Nid4);
+						 $('#win3').dialog('close');
+						 $('#btn_confirm3').off("click");
+					});
+				}
+				
+			}
+			
+			//8个LED灯
+			function writeID4(mathR){
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.LED9" ).attr("id"); 
+				var inputid2 = $("#d"+mathR+">.LED10" ).attr("id");
+				var inputid3 = $("#d"+mathR+">.LED11" ).attr("id");
+				var inputid4 = $("#d"+mathR+">.LED12" ).attr("id");
+				var inputid5 = $("#d"+mathR+">.LED13" ).attr("id"); 
+				var inputid6 = $("#d"+mathR+">.LED14" ).attr("id");
+				var inputid7 = $("#d"+mathR+">.LED15" ).attr("id");
+				var inputid8 = $("#d"+mathR+">.LED16" ).attr("id");
+				if(inputid1 == undefined && inputid2 == undefined && inputid3 == undefined && inputid4 == undefined && inputid5 == undefined && inputid6 == undefined && inputid7 == undefined && inputid8 == undefined){
+					$("#number8").val("");
+					$("#number9").val("");
+					$("#number10").val("");
+					$("#number11").val("");
+					$("#number12").val("");
+					$("#number13").val("");
+					$("#number14").val("");
+					$("#number15").val("");
+					$('#win4').window('open');
+					$('#btn_confirm4').on('click',function(){
+						 var Nid = $("#number8").val();
+						 var Nid2 = $("#number9").val();
+						 var Nid3= $("#number10").val();
+						 var Nid4 = $("#number11").val();
+						 var Nid5= $("#number12").val();
+						 var Nid6 = $("#number13").val();
+						 var Nid7= $("#number14").val();
+						 var Nid8 = $("#number15").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED9" ).attr("id",Nid);
+						 $("#"+did+">.LED10" ).attr("id",Nid2);
+						 $("#"+did+">.LED11" ).attr("id",Nid3);
+						 $("#"+did+">.LED12" ).attr("id",Nid4);
+						 $("#"+did+">.LED13" ).attr("id",Nid5);
+						 $("#"+did+">.LED14" ).attr("id",Nid6);
+						 $("#"+did+">.LED15" ).attr("id",Nid7);
+						 $("#"+did+">.LED16" ).attr("id",Nid8);
+						 $('#win4').dialog('close');
+						 $('#btn_confirm4').off("click");
+					});
+				}else{
+					$("#number8").val(inputid1);
+					$("#number9").val(inputid2);
+					$("#number10").val(inputid3);
+					$("#number11").val(inputid4);
+					$("#number12").val(inputid5);
+					$("#number13").val(inputid6);
+					$("#number14").val(inputid7);
+					$("#number15").val(inputid8);
+					$('#win4').window('open');
+					$('#btn_confirm4').on('click',function(){
+						 var Nid = $("#number8").val();
+						 var Nid2 = $("#number9").val();
+						 var Nid3= $("#number10").val();
+						 var Nid4 = $("#number11").val();
+						 var Nid5= $("#number12").val();
+						 var Nid6 = $("#number13").val();
+						 var Nid7= $("#number14").val();
+						 var Nid8 = $("#number15").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED9" ).attr("id",Nid);
+						 $("#"+did+">.LED10" ).attr("id",Nid2);
+						 $("#"+did+">.LED11" ).attr("id",Nid3);
+						 $("#"+did+">.LED12" ).attr("id",Nid4);
+						 $("#"+did+">.LED13" ).attr("id",Nid5);
+						 $("#"+did+">.LED14" ).attr("id",Nid6);
+						 $("#"+did+">.LED15" ).attr("id",Nid7);
+						 $("#"+did+">.LED16" ).attr("id",Nid8);
+						 $('#win4').dialog('close');
+						 $('#btn_confirm4').off("click");
+					});
+				}
+
+			}
+			
+			// ------------------------------------------------输出口指示灯--------------------------------------------
+			function writeID_output(mathR){
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.LED2" ).attr("id"); 
+				var inputid2 = $("#d"+mathR+">.LED2" ).attr("onClick");
+				if(inputid1 == undefined && inputid2 == undefined){
+					$("#number16").val("");
+					$("#number17").val("");
+					$('#win11').window('open');
+					$('#btn_confirm11').on('click',function(){
+						 var Nid = $("#number16").val();
+						 var Oncli= $("#number17").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED2" ).attr("id",Nid);
+						 $("#"+did+">.LED2" ).attr("onClick",Oncli);
+						 $('#win11').dialog('close');
+						 $('#btn_confirm11').off("click");
+					});
+				}else{
+					$("#number16").val(inputid1);
+					$("#number17").val(inputid2);
+					$('#win11').window('open');
+					$('#btn_confirm11').on('click',function(){
+						 var Nid = $("#number16").val();
+						 var Oncli= $("#number17").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED2" ).attr("id",Nid);
+						 $("#"+did+">.LED2" ).attr("onClick",Oncli);
+						 $('#win11').dialog('close');
+						 $('#btn_confirm11').off("click");
+					});
+				}
+
+			}
+			
+			//两个LED灯
+			function writeID2_output(mathR){
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.LED3" ).attr("id"); 
+				var inputid2 = $("#d"+mathR+">.LED3" ).attr("onClick");
+				var inputid3 = $("#d"+mathR+">.LED4" ).attr("id"); 
+				var inputid4 = $("#d"+mathR+">.LED4" ).attr("onClick");
+				if(inputid1 == undefined && inputid2 == undefined && inputid3 == undefined && inputid4 == undefined){
+					$("#number18").val("");
+					$("#number19").val("");
+					$("#number20").val("");
+					$("#number21").val("");
+					$('#win12').window('open');
+					$('#btn_confirm12').on('click',function(){
+						 var Nid = $("#number18").val();
+						 var  Oncli = $("#number19").val();
+						 var Nid2 = $("#number20").val();
+						 var Oncli2= $("#number21").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED3" ).attr("id",Nid);
+						 $("#"+did+">.LED4" ).attr("id",Nid2);
+						 $("#"+did+">.LED3" ).attr("onClick",Oncli);
+						 $("#"+did+">.LED4" ).attr("onClick",Oncli2);
+						 $('#win12').dialog('close');
+						 $('#btn_confirm12').off("click");
+					});
+				}else{
+					$("#number18").val(inputid1);
+					$("#number19").val(inputid2);
+					$("#number20").val(inputid3);
+					$("#number21").val(inputid4);
+					$('#win12').window('open');
+					$('#btn_confirm12').on('click',function(){
+						 var Nid = $("#number18").val();
+						 var  Oncli = $("#number19").val();
+						 var Nid2 = $("#number20").val();
+						 var Oncli2= $("#number21").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED3" ).attr("id",Nid);
+						 $("#"+did+">.LED4" ).attr("id",Nid2);
+						 $("#"+did+">.LED3" ).attr("onClick",Oncli);
+						 $("#"+did+">.LED4" ).attr("onClick",Oncli2);
+						 $('#win12').dialog('close');
+						 $('#btn_confirm12').off("click");
+					});
+				}
+				
+			}
+			
+			//4个LED灯
+			function writeID3_output(mathR){
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.LED5" ).attr("id"); 
+				var inputid2 = $("#d"+mathR+">.LED5" ).attr("onClick");
+				var inputid3 = $("#d"+mathR+">.LED6" ).attr("id"); 
+				var inputid4 = $("#d"+mathR+">.LED6" ).attr("onClick");
+				var inputid5 = $("#d"+mathR+">.LED7" ).attr("id"); 
+				var inputid6 = $("#d"+mathR+">.LED7" ).attr("onClick");
+				var inputid7 = $("#d"+mathR+">.LED8" ).attr("id"); 
+				var inputid8 = $("#d"+mathR+">.LED8" ).attr("onClick");
+				if(inputid1 == undefined && inputid2 == undefined && inputid3 == undefined && inputid4 == undefined && inputid5 == undefined && inputid6 == undefined && inputid7 == undefined && inputid8 == undefined){
+					$("#number22").val("");
+					$("#number23").val("");
+					$("#number24").val("");
+					$("#number25").val("");
+					$("#number26").val("");
+					$("#number27").val("");
+					$("#number28").val("");
+					$("#number29").val("");
+					$('#win13').window('open');
+					$('#btn_confirm13').on('click',function(){
+						 var Nid = $("#number22").val();
+						 var Nid2 = $("#number24").val();
+						 var Nid3= $("#number26").val();
+						 var Nid4 = $("#number28").val();
+						 var Oncli= $("#number23").val();
+						 var Oncli2= $("#number25").val();
+						 var Oncli3= $("#number27").val();
+						 var Oncli4= $("#number29").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED5" ).attr("id",Nid);
+						 $("#"+did+">.LED6" ).attr("id",Nid2);
+						 $("#"+did+">.LED7" ).attr("id",Nid3);
+						 $("#"+did+">.LED8" ).attr("id",Nid4);
+						 $("#"+did+">.LED5" ).attr("onClick",Oncli);
+						 $("#"+did+">.LED6" ).attr("onClick",Oncli2);
+						 $("#"+did+">.LED7" ).attr("onClick",Oncli3);
+						 $("#"+did+">.LED8" ).attr("onClick",Oncli4);
+						 $('#win13').dialog('close');
+						 $('#btn_confirm13').off("click");
+					});
+				}else{
+					$("#number22").val(inputid1);
+					$("#number23").val(inputid2);
+					$("#number24").val(inputid3);
+					$("#number25").val(inputid4);
+					$("#number26").val(inputid5);
+					$("#number27").val(inputid6);
+					$("#number28").val(inputid7);
+					$("#number29").val(inputid8);
+					$('#win13').window('open');
+					$('#btn_confirm13').on('click',function(){
+						 var Nid = $("#number22").val();
+						 var Nid2 = $("#number24").val();
+						 var Nid3= $("#number26").val();
+						 var Nid4 = $("#number28").val();
+						 var Oncli= $("#number23").val();
+						 var Oncli2= $("#number25").val();
+						 var Oncli3= $("#number27").val();
+						 var Oncli4= $("#number29").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED5" ).attr("id",Nid);
+						 $("#"+did+">.LED6" ).attr("id",Nid2);
+						 $("#"+did+">.LED7" ).attr("id",Nid3);
+						 $("#"+did+">.LED8" ).attr("id",Nid4);
+						 $("#"+did+">.LED5" ).attr("onClick",Oncli);
+						 $("#"+did+">.LED6" ).attr("onClick",Oncli2);
+						 $("#"+did+">.LED7" ).attr("onClick",Oncli3);
+						 $("#"+did+">.LED8" ).attr("onClick",Oncli4);
+						 $('#win13').dialog('close');
+						 $('#btn_confirm13').off("click");
+					});
+				}
+				
+			}
+			
+			//8个LED灯
+			function writeID4_output(mathR){
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.LED9" ).attr("id"); 
+				var inputid2 = $("#d"+mathR+">.LED9" ).attr("onClick");
+				var inputid3 = $("#d"+mathR+">.LED10" ).attr("id"); 
+				var inputid4 = $("#d"+mathR+">.LED10" ).attr("onClick");
+				var inputid5 = $("#d"+mathR+">.LED11" ).attr("id"); 
+				var inputid6 = $("#d"+mathR+">.LED11" ).attr("onClick");
+				var inputid7 = $("#d"+mathR+">.LED12" ).attr("id"); 
+				var inputid8 = $("#d"+mathR+">.LED12" ).attr("onClick");
+				var inputid9 = $("#d"+mathR+">.LED13" ).attr("id"); 
+				var inputid10 = $("#d"+mathR+">.LED13" ).attr("onClick");
+				var inputid11 = $("#d"+mathR+">.LED14" ).attr("id"); 
+				var inputid12 = $("#d"+mathR+">.LED14" ).attr("onClick");
+				var inputid13 = $("#d"+mathR+">.LED15" ).attr("id"); 
+				var inputid14 = $("#d"+mathR+">.LED15" ).attr("onClick");
+				var inputid15 = $("#d"+mathR+">.LED16" ).attr("id"); 
+				var inputid16 = $("#d"+mathR+">.LED16" ).attr("onClick");
+				if(inputid1 == undefined && inputid2 == undefined && inputid3 == undefined && inputid4 == undefined && inputid5 == undefined && inputid6 == undefined && inputid7 == undefined && inputid8 == undefined && inputid9 == undefined && inputid10 == undefined && inputid11 == undefined && inputid12 == undefined && inputid13 == undefined && inputid14 == undefined && inputid15 == undefined && inputid16 == undefined){
+					$("#number30").val("");
+					$("#number31").val("");
+					$("#number32").val("");
+					$("#number33").val("");
+					$("#number34").val("");
+					$("#number35").val("");
+					$("#number36").val("");
+					$("#number37").val("");
+					$("#number38").val("");
+					$("#number39").val("");
+					$("#number40").val("");
+					$("#number41").val("");
+					$("#number42").val("");
+					$("#number43").val("");
+					$("#number44").val("");
+					$("#number45").val("");
+					$('#win14').window('open');
+					$('#btn_confirm14').on('click',function(){
+						 var Nid = $("#number30").val();
+						 var Nid2 = $("#number32").val();
+						 var Nid3= $("#number34").val();
+						 var Nid4 = $("#number36").val();
+						 var Nid5= $("#number38").val();
+						 var Nid6 = $("#number40").val();
+						 var Nid7= $("#number42").val();
+						 var Nid8 = $("#number44").val();
+						 var Oncli= $("#number31").val();
+						 var Oncli2= $("#number33").val();
+						 var Oncli3= $("#number35").val();
+						 var Oncli4= $("#number37").val();
+						 var Oncli5= $("#number39").val();
+						 var Oncli6= $("#number41").val();
+						 var Oncli7= $("#number43").val();
+						 var Oncli8= $("#number45").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED9" ).attr("id",Nid);
+						 $("#"+did+">.LED10" ).attr("id",Nid2);
+						 $("#"+did+">.LED11" ).attr("id",Nid3);
+						 $("#"+did+">.LED12" ).attr("id",Nid4);
+						 $("#"+did+">.LED13" ).attr("id",Nid5);
+						 $("#"+did+">.LED14" ).attr("id",Nid6);
+						 $("#"+did+">.LED15" ).attr("id",Nid7);
+						 $("#"+did+">.LED16" ).attr("id",Nid8);
+						 $("#"+did+">.LED9" ).attr("onClick",Oncli);
+						 $("#"+did+">.LED10" ).attr("onClick",Oncli2);
+						 $("#"+did+">.LED11" ).attr("onClick",Oncli3);
+						 $("#"+did+">.LED12" ).attr("onClick",Oncli4);
+						 $("#"+did+">.LED13" ).attr("onClick",Oncli5);
+						 $("#"+did+">.LED14" ).attr("onClick",Oncli6);
+						 $("#"+did+">.LED15" ).attr("onClick",Oncli7);
+						 $("#"+did+">.LED16" ).attr("onClick",Oncli8);
+						 $('#win14').dialog('close');
+						 $('#btn_confirm14').off("click");
+					});
+				}else{
+					$("#number30").val(inputid1);
+					$("#number31").val(inputid2);
+					$("#number32").val(inputid3);
+					$("#number33").val(inputid4);
+					$("#number34").val(inputid5);
+					$("#number35").val(inputid6);
+					$("#number36").val(inputid7);
+					$("#number37").val(inputid8);
+					$("#number38").val(inputid9);
+					$("#number39").val(inputid10);
+					$("#number40").val(inputid11);
+					$("#number41").val(inputid12);
+					$("#number42").val(inputid13);
+					$("#number43").val(inputid14);
+					$("#number44").val(inputid15);
+					$("#number45").val(inputid16);
+					$('#win14').window('open');
+					$('#btn_confirm14').on('click',function(){
+						 var Nid = $("#number30").val();
+						 var Nid2 = $("#number32").val();
+						 var Nid3= $("#number34").val();
+						 var Nid4 = $("#number36").val();
+						 var Nid5= $("#number38").val();
+						 var Nid6 = $("#number40").val();
+						 var Nid7= $("#number42").val();
+						 var Nid8 = $("#number44").val();
+						 var Oncli= $("#number31").val();
+						 var Oncli2= $("#number33").val();
+						 var Oncli3= $("#number35").val();
+						 var Oncli4= $("#number37").val();
+						 var Oncli5= $("#number39").val();
+						 var Oncli6= $("#number41").val();
+						 var Oncli7= $("#number43").val();
+						 var Oncli8= $("#number45").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED9" ).attr("id",Nid);
+						 $("#"+did+">.LED10" ).attr("id",Nid2);
+						 $("#"+did+">.LED11" ).attr("id",Nid3);
+						 $("#"+did+">.LED12" ).attr("id",Nid4);
+						 $("#"+did+">.LED13" ).attr("id",Nid5);
+						 $("#"+did+">.LED14" ).attr("id",Nid6);
+						 $("#"+did+">.LED15" ).attr("id",Nid7);
+						 $("#"+did+">.LED16" ).attr("id",Nid8);
+						 $("#"+did+">.LED9" ).attr("onClick",Oncli);
+						 $("#"+did+">.LED10" ).attr("onClick",Oncli2);
+						 $("#"+did+">.LED11" ).attr("onClick",Oncli3);
+						 $("#"+did+">.LED12" ).attr("onClick",Oncli4);
+						 $("#"+did+">.LED13" ).attr("onClick",Oncli5);
+						 $("#"+did+">.LED14" ).attr("onClick",Oncli6);
+						 $("#"+did+">.LED15" ).attr("onClick",Oncli7);
+						 $("#"+did+">.LED16" ).attr("onClick",Oncli8);
+						 $('#win14').dialog('close');
+						 $('#btn_confirm14').off("click");
+					});
+				}
+				
+			}
+			
+			
+			// ------------------------------------------------网络信号指示灯-------------------------------------------
+			function writeID_net(mathR){
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.LED2" ).attr("id");
+				if(inputid1 == undefined){
+					$("#number46").val("");
+					$('#win9').window('open');
+					$('#btn_confirm9').on('click',function(){
+						 var Nid = $("#number46").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED2" ).attr("id",Nid);
+						 $('#win9').dialog('close');
+						 $('#btn_confirm9').off("click");
+					});
+				}else{
+					$("#number46").val(inputid1);
+					$('#win9').window('open');
+					$('#btn_confirm9').on('click',function(){
+						 var Nid = $("#number46").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED2" ).attr("id",Nid);
+						 $('#win9').dialog('close');
+						 $('#btn_confirm9').off("click");
+					});
+				}
+				
+			}
+			
+			//两个LED灯
+			function writeID2_net(mathR){
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.LED3" ).attr("id");
+				var inputid2 = $("#d"+mathR+">.LED4" ).attr("id");
+				if(inputid1 == undefined && inputid2 == undefined){
+					$("#number47").val("");
+					$("#number48").val("");
+					$('#win10').window('open');
+					$('#btn_confirm10').on('click',function(){
+						 var Nid = $("#number47").val();
+						 var Nid2 = $("#number48").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED3" ).attr("id",Nid);
+						 $("#"+did+">.LED4" ).attr("id",Nid2);
+						 $('#win10').dialog('close');
+						 $('#btn_confirm10').off("click");
+					});
+				}else{
+					$("#number47").val(inputid1);
+					$("#number48").val(inputid2);
+					$('#win10').window('open');
+					$('#btn_confirm10').on('click',function(){
+						 var Nid = $("#number47").val();
+						 var Nid2 = $("#number48").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.LED3" ).attr("id",Nid);
+						 $("#"+did+">.LED4" ).attr("id",Nid2);
+						 $('#win10').dialog('close');
+						 $('#btn_confirm10').off("click");
+					});
+				}
+				
+			}
+			// -------------------------------------------文本框--------------------------------------
+		//-------------------------------------------文本框_横------------------------------------
+		// --------------------------------200px-----------------------
+		function writeSth_row(mathR) {
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.wenben1" ).html(); 
+				if(inputid1 == undefined){
+					$("#number49").val("");
+					$('#win5').window('open');
+					$('#btn_confirm5').on('click',function(){
+						 var Nid = $("#number49").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.wenben1" ).html(Nid);
+						 $('#win5').dialog('close');
+						 $('#btn_confirm5').off("click");
+					});
+				}else{
+					$("#number49").val(inputid1);
+					$('#win5').window('open');
+					$('#btn_confirm5').on('click',function(){
+						 var Nid = $("#number49").val();
+						 did = "d"+mathR;
+						 $("#"+did+">.wenben1" ).html(Nid);
+						 $('#win5').dialog('close');
+						 $('#btn_confirm5').off("click");
+					});
+				}
+				
+			}
+			// ------------------------------20px----------------------------
+					function writeSth_row_20(mathR) {
+					var did = "";
+					var inputid1 = $("#d"+mathR+">.wenben_r_20_1" ).html(); 
+					if(inputid1 == undefined){
+						$("#number54").val("");
+						$('#win15').window('open');
+						$('#btn_confirm15').on('click',function(){
+							 var Nid = $("#number54").val();
+							 did = "d"+mathR;
+							 $("#"+did+">.wenben1" ).html(Nid);
+							 $('#win15').dialog('close');
+							 $('#btn_confirm15').off("click");
+						});
+					}else{
+						$("#number54").val(inputid1);
+						$('#win15').window('open');
+						$('#btn_confirm15').on('click',function(){
+							 var Nid = $("#number54").val();
+							 did = "d"+mathR;
+							 $("#"+did+">.wenben_r_20_1" ).html(Nid);
+							 $('#win15').dialog('close');
+							 $('#btn_confirm15').off("click");
+						});
+					}
+					
+				}
+			// ------------------------------70px----------------------------
+					function writeSth_row_70(mathR) {
+					var did = "";
+					var inputid1 = $("#d"+mathR+">.wenben_r_70_1" ).html(); 
+					if(inputid1 == undefined){
+						$("#number55").val("");
+						$('#win16').window('open');
+						$('#btn_confirm16').on('click',function(){
+							 var Nid = $("#number55").val();
+							 did = "d"+mathR;
+							 $("#"+did+">.wenben1" ).html(Nid);
+							 $('#win16').dialog('close');
+							 $('#btn_confirm16').off("click");
+						});
+					}else{
+						$("#number55").val(inputid1);
+						$('#win16').window('open');
+						$('#btn_confirm16').on('click',function(){
+							 var Nid = $("#number55").val();
+							 did = "d"+mathR;
+							 $("#"+did+">.wenben_r_70_1" ).html(Nid);
+							 $('#win16').dialog('close');
+							 $('#btn_confirm16').off("click");
+						});
+					}
+					
+				}
+			
+			
+		// 竖
+		function writeSth_col(mathR){
+			var did = "";
+			var inputid1 = $("#d"+mathR+">.wenben_shu1" ).attr("id");
+			if(inputid1 == undefined){
+				$("#number50").val("");
+				$('#win8').window('open');
+				$('#btn_confirm8').on('click',function(){
+					 var Nid = $("#number50").val();
+					 did = "d"+mathR;
+					 $("#"+did+">.wenben_shu1" ).html(Nid);
+					 $('#win8').dialog('close');
+					 $('#btn_confirm8').off("click");
+				});
+			}else{
+				$("#number50").val(inputid1);
+				$('#win8').window('open');
+				$('#btn_confirm8').on('click',function(){
+					 var Nid = $("#number50").val();
+					 did = "d"+mathR;
+					 $("#"+did+">.wenben_shu1" ).html(Nid);
+					 $('#win8').dialog('close');
+					 $('#btn_confirm8').off("click");
+				});
+			}
+			
+		}	
+
+		//--------------------------------------------------按钮-------------------------------------
+		function writeSth_btn(mathR) {
+				var did = "";
+				var inputid1 = $("#d"+mathR+">.btn_init1" ).attr("onClick");
+				var inputid2 = $("#d"+mathR+">.btn_init1" ).html();
+				if(inputid1 == undefined && inputid2 == undefined){
+					$("#number51").val("");
+					$("#number52").val("");
+					$('#win6').window('open');
+					$('#btn_confirm6').on('click',function(){
+					 var Nid = $("#number51").val();
+					 var Nid2 = $("#number52").val();
+					 did = "d"+mathR;
+					 $("#"+did+">.btn_init1" ).attr("onClick",Nid);
+					 $("#"+did+">.btn_init1" ).html(Nid2);
+					 $('#win6').dialog('close');
+					 $('#btn_confirm6').off("click");
+					});
+				}else{
+					$("#number51").val(inputid1);
+					$("#number52").val(inputid2);
+					$('#win6').window('open');
+					$('#btn_confirm6').on('click',function(){
+					 var Nid = $("#number51").val();
+					 var Nid2 = $("#number52").val();
+					 did = "d"+mathR;
+					 $("#"+did+">.btn_init1" ).attr("onClick",Nid);
+					 $("#"+did+">.btn_init1" ).html(Nid2);
+					 $('#win6').dialog('close');
+					 $('#btn_confirm6').off("click");
+					});
+				}
+				
+			}
+
+		// ---------------------------------------------输入框-------------------------------------------
+		//输入框改变
+		function writeSth_input(mathR){
+			var did = "";
+			var inputid1 = $("#d"+mathR+">.shuru1" ).attr("id");
+			if(inputid1 == undefined){
+				$("#number53").val("");
+				$('#win7').window('open');
+				$('#btn_confirm7').on('click',function(){
+					 var Nid = $("#number53").val();
+					 did = "d"+mathR;
+					 $("#"+did+">.shuru1" ).attr("id",Nid); //attr() 方法设置或返回被选元素的属性值。
+					 $('#win7').dialog('close');
+					 $('#btn_confirm7').off("click");
+				});
+			}else{
+				$("#number53").val(inputid1);
+				$('#win7').window('open');
+				$('#btn_confirm7').on('click',function(){
+					 var Nid = $("#number53").val();
+					 did = "d"+mathR;
+					 $("#"+did+">.shuru1" ).attr("id",Nid); //attr() 方法设置或返回被选元素的属性值。
+					 $('#win7').dialog('close');
+					 $('#btn_confirm7').off("click");
+				});
+			}
+			
+		}
+		// 文本框竖
+
+		// ----------------------------------------------------------------其余功能--------------------------------------------------------
+		//查看area区域内容
+		function a(){
+			alert($("#area").html());
+		}
+		
+		//右键删除
+		var obj;
+		var rdiv
+		function rclick(Odiv){
+			obj = Odiv;
+			rdiv = document.getElementById("rdiv");
+			rdiv.style.left = event.x;
+			rdiv.style.top = event.y;
+		    rdiv.style.display = "";
+		    event.returnValue=false;//屏蔽右键点击事件
+		}
+		function remove1(){
+			
+			//obj.parentNode.removeNode(obj);火狐浏览器不支持//bug
+			obj.parentNode.removeChild(obj);
+			rdiv.style.display="none";
+			
+		}
+		
+			//获取随机数
+		var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+		
+		function generateMixed(n) {
+			var res = "";
+			for (var i = 0; i < n; i++) {
+				var id = Math.ceil(Math.random() * 35); 
+				// math.ceil(x)返回大于等于参数x的最小整数,即对浮点数向上取整,获得0-34的数
+				res += chars[id];
+			}
+			return res;
+		}
+		
+		// ----------------------------颜色选择器-----------------------
+		  layui.use(['colorpicker', 'layer'], function(){
+		  var colorpicker = layui.colorpicker;
+		
+		  colorpicker.render({
+		    elem: '#test1'
+		    //,predefine: true //开启预定义颜色
+		    //,colors: ['#F00','#0F0','#00F','rgb(255, 69, 0)','rgba(255, 69, 0, 0.5)']
+		    ,change: function(color){
+		      document.getElementById("area").style.backgroundColor = color;
+		    }
+		    ,done: function(color){
+		      layui.$('#LAY-test1').val(color);
+		      document.getElementById("area").style.backgroundColor = color;
+		    }
+		  });
+		})
+			
+</script>
+
+		 <!-- ---------------------------电压和电流采集及曲线图------------------------------ -->
+		<!-- AI0 -->
+<script>
+	
+			// 获取用户名
+			var info = window.localStorage.info;
+			var data7 = JSON.parse(info)
+
+			$(".btn_AI0").click(function(){
+			$('#win_AI0').window('open');
+			 var myChart2 = echarts.init(document.getElementById('AI0'));
+			var vo = function(){
+			console.log(myChart2);
+			$.ajax({
+					data:{
+					'sid':data7.sid
+					},
+					url:'http://'+nip+':8080/AI0/query',
+					type:'GET',
+					dataType:'json',
+					success: function(res){
+					console.log(res.series);
+					var option1 = {
+						xAxis: {
+						type: 'category',
+						data: res.xAxis
+					},
+					yAxis: {
+						type: 'value',
+						name:'单位:V'
+					},
+					series: [{
+						data: res.series,
+						type: 'line',
+						itemStyle: {
+										normal: {
+											label: {
+												show: true, //开启显示
+												position: 'top', //在上方显示
+												textStyle: { //数值样式
+												color: 'black',
+												fontSize: 16
+															}
+													}
+												}
+									}
+						
+							}]
+					};
+					myChart2.setOption(option1);
+				}
+			});	
+		}
+				setInterval(vo,5000);
+				});
+
+</script>
+		<!-- AI1 -->
+		<script>
+			// 获取用户名
+			var info = window.localStorage.info;
+			var data7 = JSON.parse(info)
+
+				$(".btn_AI1").click(function(){
+					$('#win_AI1').window('open');
+					  var myChart2 = echarts.init(document.getElementById('AI1'));
+				var vo = function(){
+					
+					$.ajax({
+							data:{
+							'sid':data7.sid
+							},
+							url:'http://'+nip+':8080/AI1/query',
+							type:'GET',
+							dataType:'json',
+							success: function(res){
+							console.log(res.series);
+							var option1 = {
+								xAxis: {
+								type: 'category',
+								data: res.xAxis
+							},
+							yAxis: {
+								type: 'value',
+								name:'单位:V'
+							},
+							series: [{
+								data: res.series,
+								type: 'line',
+								itemStyle: {
+												normal: {
+													label: {
+														show: true, //开启显示
+														position: 'top', //在上方显示
+														textStyle: { //数值样式
+														color: 'black',
+														fontSize: 16
+																	}
+															}
+														}
+											}
+								
+									}]
+							};
+							myChart2.setOption(option1);
+						}
+					});	
+				}
+				setInterval(vo,5000);
+					
+				});
+		
+		</script>
+		<!-- AQ0 -->
+		<script>
+			
+			
+			// 获取用户名
+			var info = window.localStorage.info;
+			var data7 = JSON.parse(info)
+			
+			$(".btn_AQ0").click(function(){{
+					$('#win_AQ0').window('open');
+					}
+					
+			var myChart2 = echarts.init(document.getElementById('AQ0'));
+			console.log(myChart2);
+				$.ajax({
+						data:{
+						'sid':data7.sid
+						},
+						url:'http://'+nip+':8080/AQ0/query',
+						type:'GET',
+						dataType:'json',
+						success: function(res){
+			var option1 = {
+				xAxis: {
+					type: 'category',
+					data: res.xAxis
+				},
+				yAxis: {
+					type: 'value',
+					name:'单位:mA'
+				},
+				series: [{
+					data: res.series,
+					type: 'line',
+					itemStyle: {
+									normal: {
+										label: {
+											show: true, //开启显示
+											position: 'top', //在上方显示
+											textStyle: { //数值样式
+											color: 'black',
+											fontSize: 16
+														}
+												}
+											}
+								}
+					
+						}]
+			};
+			myChart2.setOption(option1);
+			}
+			});
+		
+				});
+					
+			
+		</script>
+		<!-- AQ1 -->
+		<script>
+			
+			
+			// 获取用户名
+			var info = window.localStorage.info;
+			var data7 = JSON.parse(info)
+			
+			$(".btn_AQ1").click(function(){
+					$('#win_AQ1').window('open');	
+			var myChart2 = echarts.init(document.getElementById('AQ1'));
+			console.log(myChart2);
+			$.ajax({
+					data:{
+					'sid':data7.sid
+					},
+						url:'http://'+nip+':8080/AQ1/query',
+						type:'GET',
+						dataType:'json',
+						success: function(res){
+			var option1 = {
+				xAxis: {
+					type: 'category',
+					data: res.xAxis
+				},
+				yAxis: {
+					type: 'value',
+					name:'单位:mA'
+				},
+				series: [{
+					data: res.series,
+					type: 'line',
+					itemStyle: {
+									normal: {
+										label: {
+											show: true, //开启显示
+											position: 'top', //在上方显示
+											textStyle: { //数值样式
+											color: 'black',
+											fontSize: 16
+														}
+												}
+											}
+								}
+					
+						}]
+			};
+			myChart2.setOption(option1);
+			}
+			});	
+					
+				});
+		
+		
+		</script>  
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="assets/css/layui.css">
+    <link rel="stylesheet" href="assets/css/view.css"/>
+    <link rel="icon" href="/favicon.ico">
+    <title>管理后台</title>
+	<script src="js/Variables.js"></script>
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+        <div class="layui-page-header">
+            <div class="pagewrap">
+				<form id="tf" enctype="multipart/form-data">
+					<input type="file"  name="file" /> 
+					<button class="layui-btn layui-btn-blue" id="btn_upload"><i class="layui-icon">&#xe654;</i>xlsx表格导入</button>
+				</form>
+			
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-card">
+                <div class="layui-card-body" >
+                    <div class="form-box" >
+
+
+							 <div class="layui-form-item">
+							  <label class="layui-form-label">学号：</label>
+							  <div class="layui-input-inline">
+							    <input type="text" name="sno" required lay-verify="required" placeholder="请输入学号" autocomplete="on" class="layui-input" id="in_sno">
+							  </div>
+							  <br />
+							   <br />
+							    <br />
+							<div class="layui-form-item">
+							 <label class="layui-form-label">姓名：</label>
+							 <div class="layui-input-inline">
+							   <input type="text" name="sname" required lay-verify="required" placeholder="请输入名字" autocomplete="on" class="layui-input" id="in_sname">
+							 </div>
+							  <br />
+							   <br />
+							    <br />
+                        	<div class="layui-form-item">
+							<label class="layui-form-label">密码：</label>
+							<div class="layui-input-inline">
+							<input type="text" name="spassword" required lay-verify="required" placeholder="请输入密码" autocomplete="on" class="layui-input" id="in_spassword">
+							</div>
+							<br />
+							 <br />
+							  <br />
+							<div class="layui-form-item">
+							  <div class="layui-input-block">
+							    <button class="layui-btn layui-btn-blue" lay-submit lay-filter="formDemo" id="btn_add">添加</button>
+							  </div>
+							</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="layui.all.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script><!--在easyui上方 -->
+    <script type="text/javascript">
+		// 单条数据插入
+		$('#btn_add').click(function(){
+				
+				var sno=document.getElementById("in_sno").value;
+				var susername = document.getElementById("in_sname").value;
+				var spassword = document.getElementById("in_spassword").value;
+				$.ajax({
+				type:'POST',
+				url:'http://'+nip+':8080/Teacher/insert_one',
+				data:{
+					// 'o1':$("#AC_Output0").val()
+					'sno':sno,
+					'susername':susername,
+					'spassword':spassword
+					
+				},
+				
+				dataType:"json",
+				success:function(msg){
+					alert(msg.success);
+					//window.location.href='querystudent.html';
+				}
+			});
+		
+		});
+		//(bug:不设置这个会自动提交表单的submit)
+		$("form").submit( function () {
+			return false;
+		} );
+		// xlsx表格导入
+			$('#btn_upload').click(function(){
+			var form = new FormData(document.getElementById("tf"));
+		    $.ajax({
+		        url:"http://"+nip+":8080/Teacher/impotusers",
+		        type:"post",
+		        data:form,
+				dataType:"json",
+		        processData:false,
+		        contentType:false,
+		        success:function(msg){
+					console.log(msg)
+		            alert(msg.success);
+		        },
+		        error:function(e){
+				  console.log(msg)
+		          alert("导入失败！");
+		        }
+		    });        
+		   
+		});
+		
+
+    </script>
+</body>
+</html>
